@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+
+            <link rel='stylesheet' id='reset-css' href="{{ asset('dist/css/reset.css') }}" type='text/css' media='all'/>
+            <link rel='stylesheet' id='superfish-css' href="{{ asset('dist/css/superfish.css') }}" type='text/css' media='all'/>
+            <link rel='stylesheet' id='fontawsome-css' href="{{ asset('dist/css/font-awsome/css/font-awesome.css') }}" type='text/css' media='all'/>
+            <link rel='stylesheet' id='orbit-css-css' href="{{ asset('dist/css/orbit.css') }}" type='text/css' media='all'/>
+            <link rel='stylesheet' id='style-css' href="{{ asset('dist/css/style.css') }}" type='text/css' media='all'/>
+            <link rel='stylesheet' id='color-scheme-css' href="{{ asset('dist/css/color/green.css') }}" type='text/css' media='all'/>
+            <link rel="stylesheet" href="{{ asset('dist/css/zerogrid.css') }}" type="text/css" media="screen">
+            <link rel="stylesheet" href="{{ asset('dist/css/responsive.css') }}" type="text/css" media="screen">
+
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    </head>
+
+    <body>
+
+        {% block body %}
+
+            {% block main %}{% endblock main %}
+
+        {% endblock %}
+
+
+        {% block javascripts %}
+
+            <script type='text/javascript' src="{{ asset('dist/js/jquery.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/jquery-migrate.min.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/jquery-1.10.2.min.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/jquery.carouFredSel-6.2.1-packed.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/hoverIntent.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/superfish.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/orbit.min.js') }}"></script>
+            <script src="{{ asset('dist/js/css3-mediaqueries.js') }}"></script>
+
+            <script type="text/javascript" language="javascript">
+                $(function() {
+
+                    /* Start Carousel */
+                    $('#featured-posts').carouFredSel({
+                        auto: true,
+                        prev: '#prev2',
+                        next: '#next2',
+                    });
+                    /* End Carousel */
+
+
+                    /* Start Orbit Slider */
+                    $(window).load(function() {
+                        $('.post-gallery').orbit({
+                            animation: 'fade',
+                        });
+                    });
+                    /* End Orbit Slider */
+
+
+                    /* Start Super fish */
+                    jQuery(document).ready(function(){
+                        jQuery('ul.sf-menu').superfish({
+                            delay:         100,
+                            speed:         'fast',
+                            speedOut:      'fast',
+                        });
+                    });
+                    /* End Of Super fish */
+
+                });
+            </script>
+
+        {% endblock %}
+    </body>
+
+</html>

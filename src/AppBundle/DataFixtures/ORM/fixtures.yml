@@ -1,0 +1,5 @@
+AppBundle\Entity\Post:
+    post_{1..30}:
+        title: <text(20,100)>
+        content: <text(2000)>
+        thumb: <imageUrl($width = 610, $height = 350, '', true, 'Faker', true)>
