@@ -147,7 +147,20 @@ a:hover{ color:#2980b9; }
 .widget-recent-posts li{ border-bottom:none; margin-bottom:0px; }
 .widget-recent-posts h6{ font-size:13px; margin-top:10px; margin-bottom:3px; }
 .widget-recent-posts span{ font-size:11px; color:#AAAAAA; text-transform:uppercase; }
-.widget-recent-posts .post-image{ float:left; margin-right:10px }
+
+.widget-recent-posts .post-image{
+	float:left;
+	margin-right:10px;
+	width: 70px;
+	height: 70px;
+}
+
+.widget-recent-posts .post-image img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .widget-recent-posts .post-image .post-mask{ height:70px; width:70px; background:url(../images/post-avatar.png) no-repeat; position:absolute }
 
 
@@ -252,7 +265,13 @@ a:hover{ color:#2980b9; }
 
 
 /* Featured Carousel */
-.carousel-item .featured-image{ width:290px; height:130px; margin-bottom:5px; }
+.carousel-item .featured-image{ width:290px; height:130px; margin-bottom:5px;}
+
+.carousel-item .featured-image img{
+	height: 130px;
+	object-fit: cover;
+}
+
 .carousel-item .post-icon{ width:45px; height:45px; position:relative; bottom:25px; margin:0 auto }
 .carousel-item .post-icon .fa-stack{ height:45px; width:45px; font-size:25px; }
 .carousel-item .post-icon .fa-picture-o{ font-size:18px; }
@@ -404,3 +423,7 @@ a:hover{ color:#2980b9; }
 
 .widget-prev { float: left; }
 .widget-next { float: right; }
+
+.caroufredsel_wrapper{
+	width: 100% !important;
+}

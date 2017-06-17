@@ -25,7 +25,15 @@
 
         {% block body %}
 
+            {% block header %}
+                {% include 'AppBundle::header.html.twig' %}
+            {% endblock %}
+
             {% block main %}{% endblock main %}
+
+            {% block footer %}
+                {% include 'AppBundle::footer.html.twig' %}
+            {% endblock %}
 
         {% endblock %}
 

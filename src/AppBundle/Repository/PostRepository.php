@@ -12,6 +12,17 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function getPosts($limit = 10)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->setMaxResults($limit)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
     /**
      * Get post with limit
      *

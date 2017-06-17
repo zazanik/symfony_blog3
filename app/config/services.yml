@@ -1,13 +1,16 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
-    app.pgManager.limit: '7'
+    app.pgManager.limit: '10'
 
 services:
     app.pgManager:
         class: AppBundle\Services\PaginateManager
         arguments: ['%app.pgManager.limit%']
+
+    app.PostHelper:
+        class: AppBundle\Services\Post\PostHelper
+        arguments: [ '@doctrine.orm.entity_manager' ]
 
 #    # default configuration for services in *this* file
 #    _defaults:

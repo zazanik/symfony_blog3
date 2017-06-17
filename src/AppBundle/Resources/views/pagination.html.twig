@@ -1,0 +1,73 @@
+{% block pagination %}
+
+<!-- Start Pagination -->
+<div class="spacing-20"></div>
+
+{% if maxPages > 1 %}
+    <ul class="pagination">
+
+        {% if maxPages > 4 %}
+
+            {# Link to first page #}
+            <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                <a href="{{ path(app.request.attributes.get('_route'), { page: 1 }) }}">«</a>
+            </li>
+            {# /Link to first page #}
+
+            {% if thisPage <= 3 %}
+
+                {% for i in 1..5 %}
+                    <li {{ thisPage == i ? 'class="current"' }}>
+                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li><a>...</a></li>
+
+            {% endif %}
+
+            {% if thisPage >= 4 and thisPage <= maxPages-3 %}
+                <li><a>...</a></li>
+                {% for i in thisPage-2..thisPage+2 %}
+                    <li {{ thisPage == i ? 'class="current"' }}>
+                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li><a>...</a></li>
+            {% endif %}
+
+            {% if thisPage > maxPages-3 and thisPage > 3 %}
+
+                <li><a>...</a></li>
+                {% for i in maxPages-4..maxPages %}
+                    <li {{ thisPage == i ? 'class="current"' }}>
+                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+
+            {% endif %}
+
+            {# Link to last page #}
+            <li {{ thisPage == maxPages ? 'class="disabled"' }}>
+                <a href="{{ path(app.request.attributes.get('_route'), { page: maxPages }) }}">»</a>
+            </li>
+            {# /Link to last page #}
+
+        {% endif %}
+
+        {% if maxPages < 5 %}
+
+            {% for i in 1..maxPages %}
+
+                <li {{ thisPage == i ? 'class="current"' }}>
+                    <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                </li>
+
+            {% endfor %}
+
+        {% endif %}
+
+    </ul>
+{% endif %}
+
+<!-- End Pagination -->
+{% endblock pagination %}

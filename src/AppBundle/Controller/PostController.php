@@ -12,6 +12,7 @@ use AppBundle\Services\PaginateManager;
 
 class PostController extends Controller
 {
+
     /**
      * @Route("/", name="post_list")
      * @Template()
@@ -23,33 +24,35 @@ class PostController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository(Post::class)->getAllPosts($thisPage, $this->getParameter('app.pgManager.limit'));
+        $posts = $this->get('app.PostHelper')->getLastPosts(10);
+        $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
-        $pagesParameters = $this->get('app.pgManager')->paginate($thisPage, $posts);
+        $paginationPosts = $em->getRepository(Post::class)->getAllPosts($thisPage, $this->getParameter('app.pgManager.limit'));
+
+        $pagesParameters = $this->get('app.pgManager')->paginate($thisPage, $paginationPosts);
 
         return array(
-            'posts' => $posts,
-            'maxPages' => $pagesParameters[0],
-            'thisPage' => $pagesParameters[1]
+            'paginationPosts'   => $paginationPosts,
+            'posts'             => $posts,
+            'lastPosts'          => $lastPosts,
+            'maxPages'          => $pagesParameters[0],
+            'thisPage'          => $pagesParameters[1]
         );
     }
 
-//    /**
-//     * @Route("/", name="post_list")
-//     */
-//    public function listAction(Request $request)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $allPosts = $em->getRepository(Post::class)->findAll();
-//
-//        $paginator  = $this->get('knp_paginator');
-//
-//        $posts = $paginator->paginate(
-//            $allPosts, $request->query->getInt('page', 1), 2
-//        );
-//
-//        // parameters to template
-//        return $this->render('AppBundle:Post:list.html.twig', array('posts' => $posts));
-//    }
+    /**
+     * @Route("/post/{id}", name="post_show")
+     * @Template()
+     */
+    public function showAction(Post $post)
+    {
+
+        $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
+
+        return array(
+            'post'               => $post,
+            'lastPosts'          => $lastPosts,
+        );
+
+    }
 }
