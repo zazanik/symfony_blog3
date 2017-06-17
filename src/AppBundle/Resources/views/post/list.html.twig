@@ -312,13 +312,15 @@
 
                         {% endif %}
 
-
-
                         {% if maxPages < 5 %}
 
-                        <li {{ thisPage == i ? 'class="current"' }}>
-                            <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
-                        </li>
+                            {% for i in 1..maxPages %}
+
+                                <li {{ thisPage == i ? 'class="current"' }}>
+                                    <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                                </li>
+
+                            {% endfor %}
 
                         {% endif %}
 
