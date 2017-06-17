@@ -272,7 +272,7 @@
                             </li>
                             {# /Link to first page #}
 
-                            {% if thisPage < 4 %}
+                            {% if thisPage <= 3 %}
 
                                 {% for i in 1..5 %}
                                     <li {{ thisPage == i ? 'class="current"' }}>
@@ -293,7 +293,7 @@
                                 <li><a>...</a></li>
                             {% endif %}
 
-                            {% if thisPage > maxPages-3 %}
+                            {% if thisPage > maxPages-3 and thisPage > 3 %}
 
                                 <li><a>...</a></li>
                                 {% for i in maxPages-4..maxPages %}
@@ -328,15 +328,7 @@
                 {% endif %}
 
                 <!-- End Pagination -->
-
-                {# KNP PAGINATION #}
-                {#<div class="navigation">#}
-                    {#{{ knp_pagination_render(posts) }}#}
-                {#</div>#}
-                {# end KNP PAGINATION #}
-
                 <div class="clear"></div>
-
             </div>
         </div>
         <!-- End Posts Container -->
