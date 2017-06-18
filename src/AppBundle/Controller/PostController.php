@@ -30,6 +30,8 @@ class PostController extends Controller
 
         $pagesParameters = $this->get('app.pgManager')->paginate($thisPage, $paginationPosts);
 
+        dump($posts);
+
         return array(
             'paginationPosts'   => $paginationPosts,
             'posts'             => $posts,

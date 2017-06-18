@@ -71,7 +71,12 @@
                                 <li><i class="fa fa-clock-o"></i>{{ post.updated|date('F j, Y') }}</li>
                                 <li>
                                     <i class="fa fa-folder-open-o"></i>
-                                    <a href="#" title="View all posts in Illustration" rel="category">Illustration</a>
+
+                                    {% for category in post.category %}
+                                        <a href="#" title="View all posts in Illustration" rel="category">{{ category.title }},</a>
+                                    {% endfor %}
+
+
                                 </li>
                                 <li><i class="fa fa-comment-o"></i>No Comments</li>
                             </ul>
