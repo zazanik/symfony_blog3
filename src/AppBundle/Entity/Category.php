@@ -35,6 +35,10 @@ class Category
      */
     private $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="category")
+     */
+    private $posts;
 
     /**
      * Get id
@@ -93,5 +97,22 @@ class Category
     {
         return $this->description;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param mixed $posts
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+    }
+
 }
 

@@ -54,6 +54,11 @@ class Post
      */
     private $updated;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
+     */
+    private $category;
     /**
      * Get id
      *
@@ -168,6 +173,20 @@ class Post
         $this->updated = $updated;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
 }
 
