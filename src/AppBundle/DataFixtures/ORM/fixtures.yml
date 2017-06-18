@@ -3,3 +3,5 @@ AppBundle\Entity\Post:
         title: <text(20,100)>
         content: <text(2000)>
         thumb: <imageUrl($width = 610, $height = 350, '', true, 'Faker', true)>
+        created: '<dateTimeBetween("-200 days", "now")>'
+        updated: '<dateTimeBetween($created, "now")>'

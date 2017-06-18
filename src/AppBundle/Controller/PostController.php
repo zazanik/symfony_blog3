@@ -7,8 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Repository\PostRepository;
-use AppBundle\Services\PaginateManager;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -41,12 +40,33 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/post/new", name="post_new")
+     */
+    public function newAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $post = new Post();
+
+        $post->setTitle('test');
+        $post->setThumb('http://lorempixel.com/gray/610/350/?24886');
+        $post->setContent('test');
+
+        $em->persist($post);
+
+        $em->flush($post);
+
+        return $this->redirectToRoute('post_list');
+
+    }
+
+    /**
      * @Route("/post/{id}", name="post_show")
      * @Template()
      */
     public function showAction(Post $post)
     {
-
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
         return array(
