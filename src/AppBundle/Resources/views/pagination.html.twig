@@ -8,6 +8,8 @@
 
         {% if maxPages > 4 %}
 
+            {{ dump(app.request) }}
+
             {# Link to first page #}
             <li {{ thisPage == 1 ? 'class="disabled"' }}>
                 <a href="{{ path(app.request.attributes.get('_route'), { page: 1 }) }}">«</a>

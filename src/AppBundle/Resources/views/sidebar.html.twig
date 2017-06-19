@@ -13,12 +13,10 @@
         </div>
         <div class="widget-container"><h6 class="widget-title">Categories</h6>
             <ul>
-                <li class="cat-item cat-item-5"><a href="#" title="View all posts filed under Apps">Apps</a>
-                </li>
-                <li class="cat-item cat-item-3"><a href="#" title="View all posts filed under Illustration">Illustration</a>
-                </li>
-                <li class="cat-item cat-item-4"><a href="#" title="View all posts filed under Logo">Logo</a>
-                </li>
+
+                {% for category in categories %}
+                    <li class="cat-item cat-item-5"><a href="#" title="View all posts filed under {{ category.title }}">{{ category.title }}</a></li>
+                {% endfor %}
             </ul>
             <div class="clear"></div>
         </div>
@@ -35,7 +33,7 @@
                     </div>
 
                     <h6><a href="{{ path('post_show', {id: post.id}) }}">{{ post.title }}</a></h6>
-                    <span>November 02, 2013</span>
+                    <span>{{ post.updated|date('F j, Y') }}</span>
                     <div class="clear"></div>
                 </li>
                 {% endfor %}

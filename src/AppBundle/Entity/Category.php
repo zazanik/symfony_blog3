@@ -36,6 +36,7 @@ class Category
     private $description;
 
     /**
+     *
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="category")
      */
     private $posts;

@@ -2,6 +2,10 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Post;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * CategoryRepository
  *
@@ -10,4 +14,57 @@ namespace AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getPostsByCategory($id, $currentPage = 1, $limit = 10)
+    {
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $query = $qb->select('p')
+            ->from('AppBundle:Post', 'p')
+            ->orderBy('p.updated', 'DESC')
+            ->getQuery()
+        ;
+
+        dump($query);
+
+        $paginator = $this->paginate($query, $currentPage, $limit);
+
+        return $paginator;
+    }
+
+    public function getLastCategories($limit = 5)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->setMaxResults($limit)
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $query;
+    }
+
+    /**
+     * @param $dql
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    public function paginate($dql, $page = 1, $limit = 10)
+    {
+
+        if ($page === null || $page === '') {
+            $page = 1;
+        }
+
+        $paginator = new Paginator($dql, $fetchJoinCollection = true);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit)
+        ;
+
+        return $paginator;
+    }
 }

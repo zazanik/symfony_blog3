@@ -11,31 +11,31 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
-
     /**
+     *
      * @Route("/", name="post_list")
      * @Template()
+
+     * @param Request $request
+     * @return array
      */
     public function listAction(Request $request)
     {
-
-        $thisPage = $request->query->get('page');
-
-        $em = $this->getDoctrine()->getManager();
-
         $posts = $this->get('app.PostHelper')->getLastPosts(10);
+
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
-        $paginationPosts = $em->getRepository(Post::class)->getAllPosts($thisPage, $this->getParameter('app.pgManager.limit'));
+        $paginationPosts = $this->get('app.PostHelper')->getPaginatePosts($request)->paginationPosts;
 
-        $pagesParameters = $this->get('app.pgManager')->paginate($thisPage, $paginationPosts);
+        $pagesParameters = $this->get('app.PostHelper')->getPaginatePosts($request)->pagesParameters;
 
-        dump($posts);
+        $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
 
         return array(
             'paginationPosts'   => $paginationPosts,
             'posts'             => $posts,
-            'lastPosts'          => $lastPosts,
+            'lastPosts'         => $lastPosts,
+            'categories'        => $categories,
             'maxPages'          => $pagesParameters[0],
             'thisPage'          => $pagesParameters[1]
         );
@@ -60,21 +60,33 @@ class PostController extends Controller
         $em->flush($post);
 
         return $this->redirectToRoute('post_list');
-
     }
 
     /**
      * @Route("/post/{id}", name="post_show")
      * @Template()
+     *
+     * @param $post Post
+     * @return array
      */
     public function showAction(Post $post)
     {
+
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
+        $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
+
+        $categoryList = $post->getCategory()->getValues();
+
+        $categoryPosts = $this->get('app.PostHelper')->getCategoryPosts($categoryList, 3);
 
         return array(
             'post'               => $post,
+            'categories'         => $categories,
             'lastPosts'          => $lastPosts,
+            'categoryPosts'      => $categoryPosts
         );
 
     }
+
+
 }

@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Post;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -12,11 +14,41 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getPosts($limit = 10)
+    /**
+     * Get posts by same post category
+     *
+     * @param $category array
+     * @param $limit integer
+     * @return array
+     */
+    public function getSameCategoryPosts($category, $limit)
+    {
+
+        $i = 0;
+        foreach ($category as $cat){
+            $categoryList[$i] = $cat->getId();
+            $i++;
+        }
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $query = $qb->select('p')
+            ->from('AppBundle:Post', 'p')
+            ->leftJoin('p.category', 'c')
+            ->where("c.id = ?{$categoryList[0]}")
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $query;
+    }
+
+    public function getLastPosts($limit = 10)
     {
         $query = $this->createQueryBuilder('p')
             ->setMaxResults($limit)
-            ->orderBy('p.id', 'DESC')
+            ->orderBy('p.updated', 'DESC')
             ->getQuery()
             ->getResult();
 
@@ -33,9 +65,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     public function getAllPosts($currentPage = 1, $limit = 10)
     {
         $query = $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
-            ->getQuery();
+            ->orderBy('p.updated', 'DESC')
+            ->getQuery()
+        ;
+
         $paginator = $this->paginate($query, $currentPage, $limit);
+
         return $paginator;
     }
 
@@ -47,13 +82,18 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
      */
     public function paginate($dql, $page = 1, $limit = 10)
     {
-        if ($page === null) {
+
+        if ($page === null || $page === '') {
             $page = 1;
         }
+
         $paginator = new Paginator($dql, $fetchJoinCollection = true);
+
         $paginator->getQuery()
             ->setFirstResult($limit * ($page - 1))
-            ->setMaxResults($limit);
+            ->setMaxResults($limit)
+        ;
+
         return $paginator;
     }
 
