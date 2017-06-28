@@ -10,22 +10,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}", name="category_posts")
+     * @Route("/category/{id}/{page}", requirements={"id" = "\d+"}, defaults={"page" = 1}, name="category_posts")
      * @Template()
      */
-    public function categoryPostsListAction(Request $request, $id)
+    public function categoryPostsListAction(Request $request, $id, $page)
     {
 
-        dump($request);
-
         $posts = $this->get('app.PostHelper')->getLastPosts(10);
+
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
-        $paginationPosts = $this->get('app.CategoryHelper')->getPaginatePosts($request, $id);
-
-
-//        $paginationPosts = $this->get('app.CategoryHelper')->getPaginatePosts($request, $id)->paginationPosts;
-//        $pagesParameters = $this->get('app.CategoryHelper')->getPaginatePosts($request, $id)->pagesParameters;
+        $paginationPosts = $this->get('app.CategoryHelper')->getPaginatePosts($page, $id);
 
         $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
 

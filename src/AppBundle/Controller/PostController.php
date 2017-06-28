@@ -13,21 +13,21 @@ class PostController extends Controller
 {
     /**
      *
-     * @Route("/", name="post_list")
+     * @Route("/{page}", defaults={"page" = 1}, name="post_list")
      * @Template()
 
      * @param Request $request
      * @return array
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request, $page)
     {
         $posts = $this->get('app.PostHelper')->getLastPosts(10);
 
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
-        $paginationPosts = $this->get('app.PostHelper')->getPaginatePosts($request)->paginationPosts;
+        $paginationPosts = $this->get('app.PostHelper')->getPaginatePosts($page)->paginationPosts;
 
-        $pagesParameters = $this->get('app.PostHelper')->getPaginatePosts($request)->pagesParameters;
+        $pagesParameters = $this->get('app.PostHelper')->getPaginatePosts($page)->pagesParameters;
 
         $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
 

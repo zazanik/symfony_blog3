@@ -16,11 +16,9 @@ class CategoryHelper
         $this->limit = $limit;
     }
 
-    public function getPaginatePosts(Request $request, $id)
+    public function getPaginatePosts($thisPage, $id)
     {
-
-        $thisPage = $request->query->get('page');
-
+        
         $paginationPosts = $this->em->getRepository(Category::class)->getPostsByCategory($id, $thisPage, $this->limit);
         $pagesParameters = $this->pm->paginate($thisPage, $paginationPosts);
 

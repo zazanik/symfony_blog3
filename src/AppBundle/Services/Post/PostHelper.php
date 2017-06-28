@@ -24,9 +24,8 @@ class PostHelper{
         return $posts;
     }
 
-    public function getPaginatePosts(Request $request)
+    public function getPaginatePosts($thisPage)
     {
-        $thisPage = $request->query->get('page');
 
         $paginationPosts = $this->em->getRepository(Post::class)->getAllPosts($thisPage, $this->limit);
         $pagesParameters = $this->pm->paginate($thisPage, $paginationPosts);
