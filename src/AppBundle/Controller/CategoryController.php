@@ -16,6 +16,8 @@ class CategoryController extends Controller
     public function categoryPostsListAction(Request $request, $id)
     {
 
+        dump($request);
+
         $posts = $this->get('app.PostHelper')->getLastPosts(10);
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 

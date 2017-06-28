@@ -10,7 +10,7 @@
 
             {# Link to first page #}
             <li {{ thisPage == 1 ? 'class="disabled"' }}>
-                <a href="{{ path(app.request.attributes.get('_route'), { page: 1 }) }}">«</a>
+                <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: 1 }) }}">«</a>
             </li>
             {# /Link to first page #}
 
@@ -18,7 +18,7 @@
 
                 {% for i in 1..5 %}
                     <li {{ thisPage == i ? 'class="current"' }}>
-                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                        <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: i }) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
                 <li><a>...</a></li>
@@ -29,7 +29,7 @@
                 <li><a>...</a></li>
                 {% for i in thisPage-2..thisPage+2 %}
                     <li {{ thisPage == i ? 'class="current"' }}>
-                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                        <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: i }) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
                 <li><a>...</a></li>
@@ -40,7 +40,7 @@
                 <li><a>...</a></li>
                 {% for i in maxPages-4..maxPages %}
                     <li {{ thisPage == i ? 'class="current"' }}>
-                        <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                        <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: i }) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
 
@@ -48,7 +48,7 @@
 
             {# Link to last page #}
             <li {{ thisPage == maxPages ? 'class="disabled"' }}>
-                <a href="{{ path(app.request.attributes.get('_route'), { page: maxPages }) }}">»</a>
+                <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: maxPages }) }}">»</a>
             </li>
             {# /Link to last page #}
 
@@ -59,7 +59,7 @@
             {% for i in 1..maxPages %}
 
                 <li {{ thisPage == i ? 'class="current"' }}>
-                    <a href="{{ path(app.request.attributes.get('_route'), { page: i }) }}">{{ i }}</a>
+                    <a href="{{ path(app.request.attributes.get('_route'), {id: app.request.attributes.get('id'), page: i }) }}">{{ i }}</a>
                 </li>
 
             {% endfor %}
