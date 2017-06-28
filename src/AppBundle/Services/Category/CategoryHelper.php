@@ -32,6 +32,8 @@ class CategoryHelper
         return $result;
     }
 
+
+
     public function getLastCategories($limit = 5){
         return $this->em->getRepository(Category::class)->getLastCategories($limit);
     }

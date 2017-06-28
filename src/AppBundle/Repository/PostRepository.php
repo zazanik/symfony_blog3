@@ -23,23 +23,26 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getSameCategoryPosts($category, $limit)
     {
-
         $i = 0;
         foreach ($category as $cat){
             $categoryList[$i] = $cat->getId();
             $i++;
         }
 
+        dump($categoryList);
+
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         $query = $qb->select('p')
             ->from('AppBundle:Post', 'p')
             ->leftJoin('p.category', 'c')
-            ->where("c.id = ?{$categoryList[0]}")
+            ->where("c.id = {$categoryList[0]}")
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;
+
+        dump($query);
 
         return $query;
     }

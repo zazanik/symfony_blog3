@@ -73,11 +73,13 @@ class PostController extends Controller
     {
 
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
+
         $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
 
         $categoryList = $post->getCategory()->getValues();
 
         $categoryPosts = $this->get('app.PostHelper')->getCategoryPosts($categoryList, 3);
+
 
         return array(
             'post'               => $post,

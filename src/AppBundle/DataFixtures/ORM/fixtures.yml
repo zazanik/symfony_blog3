@@ -11,5 +11,13 @@ AppBundle\Entity\Category:
     category_{1..10}:
         title: <word()>
         description: <text(20,200)>
-#        posts: ['@post_*']
+
+    category_11:
+        title: 'Sport'
+        description: <text(20,200)>
+
+    category_12:
+            title: 'TV'
+            description: <text(20,200)>
+
 

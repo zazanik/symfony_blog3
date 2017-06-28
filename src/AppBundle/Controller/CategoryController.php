@@ -13,7 +13,7 @@ class CategoryController extends Controller
      * @Route("/category/{id}", name="category_posts")
      * @Template()
      */
-    public function categoryPosts(Request $request, $id)
+    public function categoryPostsListAction(Request $request, $id)
     {
 
         $posts = $this->get('app.PostHelper')->getLastPosts(10);

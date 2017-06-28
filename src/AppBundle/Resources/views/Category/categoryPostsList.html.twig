@@ -1,0 +1,146 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block main %}
+
+    <!-- Start Featured Carousel -->
+    <div class="container zerogrid">
+        <div class="list_carousel">
+            <ul id="featured-posts">
+
+                {% for post in posts %}
+                    <li class="first carousel-item">
+                        <div class="post-margin">
+                            <h6><a href="{{ path('post_show', {id: post.id}) }}">{{ post.title }}</a></h6>
+                            <span><i class="fa fa-clock-o"></i>{{ post.updated|date('F j, Y') }}</span>
+                        </div>
+
+                        <div class="featured-image">
+                            <img width="290" height="130" src="{{ post.thumb }}"/>
+                            <div class="post-icon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-picture-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                            </div>
+                        </div>
+
+                        <div class="post-margin">
+                            <p>{{ post.content|slice(0, 80) ~ '...' }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+
+            <div class="clear"></div>
+
+            <div class="carousel-controls">
+                <a id="prev2" class="prev" href="#"><i class="fa fa-angle-left"></i></a>
+                <a id="next2" class="next" href="#"><i class="fa fa-angle-right"></i></a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Featured Carousel -->
+
+
+    <!-- Start Main Container -->
+    <div class="container zerogrid">
+
+        <!-- Start Posts Container -->
+        <div class="col-2-3" id="post-container">
+            <div class="wrap-col">
+
+                <!-- Start Post Item -->
+
+                {% for post in paginationPosts %}
+
+                    <div class="post">
+                        <div class="post-margin">
+
+                            <div class="post-avatar">
+                                <div class="avatar-frame"></div>
+                                <img alt=''
+                                     src='http://1.gravatar.com/avatar/16afd22c8bf5c2398b206a76c9316a3c?s=70&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D70&amp;r=G'
+                                     class='avatar avatar-70 photo' height='70' width='70'/>
+                            </div>
+
+                            <h4 class="post-title"><a href="{{ path('post_show', {id: post.id}) }}">{{ post.title }}</a></h4>
+
+                            <ul class="post-status">
+                                <li><i class="fa fa-clock-o"></i>{{ post.updated|date('F j, Y') }}</li>
+                                <li>
+                                    <i class="fa fa-folder-open-o"></i>
+
+                                    {% for category in post.category %}
+                                        <a href="#" title="View all posts in {{ category.title }}" rel="category">{{ category.title }},</a>
+                                    {% endfor %}
+
+
+                                </li>
+                                <li><i class="fa fa-comment-o"></i>No Comments</li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="featured-image">
+                            <img src="{{ post.thumb }}" class="attachment-post-standard "/>
+                            <div class="post-icon">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                            </div>
+                        </div>
+
+                        <div class="post-margin">
+                            <p>{{ post.content|slice(0, 400) ~ '...' }}</p>
+                        </div>
+
+                        <ul class="post-social">
+                            <li><a href="#" target="_blank">
+                                    <i class="fa fa-facebook"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-twitter"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-google-plus"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-linkedin"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('post_show', {id: post.id}) }}" class="readmore">Read More <i class="fa fa-arrow-circle-o-right"></i></a>
+                            </li>
+                        </ul>
+
+                        <div class="clear"></div>
+                    </div>
+
+                {% endfor %}
+
+                <!-- End Post Item -->
+
+                {#{% include "AppBundle::pagination.html.twig" %}#}
+                <div class="clear"></div>
+            </div>
+        </div>
+        <!-- End Posts Container -->
+
+        {% include 'AppBundle::sidebar.html.twig' %}
+
+        <div class="clear"></div>
+    </div>
+    <!-- End Main Container -->
+
+{% endblock main %}
+
+
