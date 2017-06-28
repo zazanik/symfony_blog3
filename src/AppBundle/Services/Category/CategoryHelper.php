@@ -18,7 +18,7 @@ class CategoryHelper
 
     public function getPaginatePosts($thisPage, $id)
     {
-        
+
         $paginationPosts = $this->em->getRepository(Category::class)->getPostsByCategory($id, $thisPage, $this->limit);
         $pagesParameters = $this->pm->paginate($thisPage, $paginationPosts);
 

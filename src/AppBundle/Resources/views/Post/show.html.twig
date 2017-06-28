@@ -24,7 +24,7 @@
                         <li><i class="fa fa-clock-o"></i>{{ post.updated|date('F j, Y') }}</li>
 
                         {% for category in post.category %}
-                            <li><i class="fa fa-folder-open-o"></i><a href="#" title="View all posts in {{ category.title }}" rel="category">{{ category.title }}</a></li>
+                            <li><i class="fa fa-folder-open-o"></i><a href="{{ path('category_posts', {id: category.id}) }}" title="View all posts in {{ category.title }}" rel="category">{{ category.title }}</a></li>
                         {% endfor %}
 
                         <li><i class="fa fa-comment-o"></i>No Comments</li>

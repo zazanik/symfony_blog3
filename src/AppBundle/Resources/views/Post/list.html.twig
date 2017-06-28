@@ -73,7 +73,7 @@
                                     <i class="fa fa-folder-open-o"></i>
 
                                     {% for category in post.category %}
-                                        <a href="#" title="View all posts in {{ category.title }}" rel="category">{{ category.title }},</a>
+                                        <a href="{{ path('category_posts', {id: category.id}) }}" title="View all posts in {{ category.title }}" rel="category">{{ category.title }},</a>
                                     {% endfor %}
 
 
