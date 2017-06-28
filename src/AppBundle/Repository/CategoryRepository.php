@@ -22,13 +22,15 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $qb->select('p')
             ->from('AppBundle:Post', 'p')
+            ->leftJoin('p.category', 'c')
+            ->where("c.id = {$id}")
             ->orderBy('p.updated', 'DESC')
             ->getQuery()
         ;
 
-        dump($query);
-
         $paginator = $this->paginate($query, $currentPage, $limit);
+
+        dump($paginator);
 
         return $paginator;
     }

@@ -15,7 +15,7 @@
             <ul>
 
                 {% for category in categories %}
-                    <li class="cat-item cat-item-5"><a href="#" title="View all posts filed under {{ category.title }}">{{ category.title }}</a></li>
+                    <li class="cat-item cat-item-5"><a href="{{ path('category_posts', {id: category.id}) }}" title="View all posts filed under {{ category.title }}">{{ category.title }}</a></li>
                 {% endfor %}
             </ul>
             <div class="clear"></div>
