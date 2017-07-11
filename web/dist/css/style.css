@@ -58,7 +58,7 @@ a:hover{ color:#2980b9; }
 	background:#FFFFFF;
 	margin-bottom:40px;
 	}
-.post .post-margin{ padding-left:8%; padding-right:8%; padding-top:5%; padding-bottom:5%; }
+.post .post-margin{ padding-left:8%; padding-right:8%; padding-top:5%; padding-bottom:5%; line-height: 1.4 }
 .post .post-title{ margin-bottom:5px; color:#444444; }
 
 .post-status li{ float:left; margin-right:10px; font-size:14px; color:#AAAAAA; }
@@ -85,7 +85,7 @@ a:hover{ color:#2980b9; }
 .post .featured-image img{ width:100%; height:350px; }
 .post .featured-image iframe{ width:100%; height:343px; }
 
-.post .post-icon{ width:80px; height:80px; position:relative; bottom:40px; margin:0 auto; z-index:9999999 }
+.post .post-icon{ width:80px; height:80px; position:relative; bottom:40px; margin:0 auto; z-index:10 }
 .post-icon .fa-stack{ height:80px; width:80px; font-size:40px; }
 .post-icon .fa-picture-o{ font-size:30px; }
 .post-icon .fa-circle{ color:#FFFFFF; }
@@ -426,4 +426,14 @@ a:hover{ color:#2980b9; }
 
 .caroufredsel_wrapper{
 	width: 100% !important;
+}
+
+.author-name{
+	margin: 0 0 10px 0;
+	font-size: 14px;
+	color: #aaa;
+}
+
+.author-name i{
+	margin: 0 10px 0 0;
 }

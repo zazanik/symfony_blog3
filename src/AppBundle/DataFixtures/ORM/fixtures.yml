@@ -1,33 +1,34 @@
 AppBundle\Entity\Post:
     post_{1..209}:
-        title: <text(20,100)>
-        content: <text(2000)>
-        thumb: <imageUrl($width = 610, $height = 350, '', true, 'Faker', true)>
-        created: '<dateTimeBetween("-200 days", "now")>'
-        updated: '<dateTimeBetween($created, "now")>'
-        category: '<numberBetween(1,3)>x @category_*'
+        title:      <text(20,100)>
+        content:    <text(2000)>
+        thumb:      <imageUrl($width = 610, $height = 350, '', true, 'Faker', true)>
+        created:    '<dateTimeBetween("-200 days", "now")>'
+        updated:    '<dateTimeBetween($created, "now")>'
+        category:   '<numberBetween(1,3)>x @category_*'
+        user:       '@user_*'
 
 AppBundle\Entity\User:
     user_1:
-        username: 'zazanik'
-        email: 'zazanik1@gmail.com'
-        enabled: 1
-        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
-        roles: [ROLE_ADMIN]
+        username:   'zazanik'
+        email:      'zazanik1@gmail.com'
+        enabled:    1
+        password:   '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles:      [ROLE_ADMIN]
 
     user_2:
-        username: 'user'
-        email: 'user@gmail.com'
-        enabled: 1
-        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
-        roles: [ROLE_USER]
+        username:   'user'
+        email:      'user@gmail.com'
+        enabled:    1
+        password:   '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles:      [ROLE_USER]
 
     user_3:
-        username: 'alina'
-        email: 'ali@gmail.com'
-        enabled: 1
-        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
-        roles: []
+        username:   'alina'
+        email:      'ali@gmail.com'
+        enabled:    1
+        password:   '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles:      []
 
 
 AppBundle\Entity\Category:

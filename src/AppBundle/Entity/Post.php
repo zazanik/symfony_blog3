@@ -63,6 +63,13 @@ class Post
      *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")})
      */
     private $category;
+
+    /**
+     * @var $user
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
     /**
      * Get id
      *
@@ -192,5 +199,22 @@ class Post
     {
         $this->category = $category;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

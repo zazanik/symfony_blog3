@@ -20,14 +20,25 @@
                              class='avatar avatar-70 photo' height='70' width='70'/></div>
 
                     <h4>{{ post.title }}</h4>
+
+                    <div class="author-name">
+                        <i class="fa  fa-user"></i>{{ post.user.username }}
+                    </div>
+
                     <ul class="post-status">
+
                         <li><i class="fa fa-clock-o"></i>{{ post.updated|date('F j, Y') }}</li>
 
-                        {% for category in post.category %}
-                            <li><i class="fa fa-folder-open-o"></i><a href="{{ path('category_posts', {id: category.id}) }}" title="View all posts in {{ category.title }}" rel="category">{{ category.title }}</a></li>
-                        {% endfor %}
+                        <li>
+                            <i class="fa fa-folder-open-o"></i>
+                            {% for category in post.category %}
+                                <a href="{{ path('category_posts', {id: category.id}) }}" title="View all posts in {{ category.title }}" rel="category">{{ category.title }},</a>
+                            {% endfor %}
+                        </li>
+
 
                         <li><i class="fa fa-comment-o"></i>No Comments</li>
+
                     </ul>
                     <div class="clear"></div>
                 </div>
