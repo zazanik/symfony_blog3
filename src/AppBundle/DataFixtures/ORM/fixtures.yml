@@ -7,6 +7,29 @@ AppBundle\Entity\Post:
         updated: '<dateTimeBetween($created, "now")>'
         category: '<numberBetween(1,3)>x @category_*'
 
+AppBundle\Entity\User:
+    user_1:
+        username: 'zazanik'
+        email: 'zazanik1@gmail.com'
+        enabled: 1
+        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles: [ROLE_ADMIN]
+
+    user_2:
+        username: 'user'
+        email: 'user@gmail.com'
+        enabled: 1
+        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles: [ROLE_USER]
+
+    user_3:
+        username: 'alina'
+        email: 'ali@gmail.com'
+        enabled: 1
+        password: '$2y$13$BJ/nFH2asw04olvsVXKzxe6nW/XxKchPDEDRz4o35VMGcuK57TJ0q'
+        roles: []
+
+
 AppBundle\Entity\Category:
 
     category_1:
