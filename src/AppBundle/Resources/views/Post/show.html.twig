@@ -124,25 +124,38 @@
                 <div class="commen-form">
                     <div id="respond" class="comment-respond">
                         <h3 id="reply-title" class="comment-reply-title">
-                            <small><a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none;">Cancel
-                                    Reply</a></small>
+                            <small><a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none;">Cancel Reply</a></small>
                         </h3>
-                        <form action="" method="post" id="comment-form-container" class="comment-form">
-                            <p class="comment-notes"></p>
-                            <input type="text" name="author" placeholder="Enter Name" class="comment-name"/>
-                            <input type="text" name="email" placeholder="Enter Email" class="comment-email"/>
-                            <input type="text" name="url" placeholder="Enter URL" class="comment-url"/>
-                            <textarea name="comment" placeholder="Enter Message Here" class="comment-text-area"></textarea>
-                            <p class="form-allowed-tags"></p>
-                            <p class="form-submit">
-                                <input name="submit" type="submit" id="comment-submit" value="Send Comment"/>
-                                <input type='hidden' name='comment_post_ID' value='49' id='comment_post_ID'/>
-                                <input type='hidden' name='comment_parent' id='comment_parent' value='0'/>
-                            </p>
-                        </form>
+
+
+                        {#{{ form_start(form) }}#}
+                        {#{{ form_errors(form) }}#}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+
+                        {#{{ form_end(form) }}#}
+
+
+
+
+                        {#<form action="" method="post" id="comment-form-container" class="comment-form">#}
+                            {#<p class="comment-notes"></p>#}
+                            {#<input type="text" name="author" placeholder="Enter Name" class="comment-name"/>#}
+                            {#<input type="text" name="email" placeholder="Enter Email" class="comment-email"/>#}
+                            {#<input type="text" name="url" placeholder="Enter URL" class="comment-url"/>#}
+                            {#<textarea name="comment" placeholder="Enter Message Here" class="comment-text-area"></textarea>#}
+                            {#<p class="form-allowed-tags"></p>#}
+                            {#<p class="form-submit">#}
+                                {#<input name="submit" type="submit" id="comment-submit" value="Send Comment"/>#}
+                                {#<input type='hidden' name='comment_post_ID' value='49' id='comment_post_ID'/>#}
+                                {#<input type='hidden' name='comment_parent' id='comment_parent' value='0'/>#}
+                            {#</p>#}
+                        {#</form>#}
                     </div><!-- #respond -->
                     <div class="clear"></div>
-                    </form>
+                    {#</form>#}
                 </div>
                 <!-- End Comment Form -->
 

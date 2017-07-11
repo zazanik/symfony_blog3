@@ -4,6 +4,7 @@
 
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}
 
             <link rel='stylesheet' id='reset-css' href="{{ asset('dist/css/reset.css') }}" type='text/css' media='all'/>
@@ -14,6 +15,7 @@
             <link rel='stylesheet' id='color-scheme-css' href="{{ asset('dist/css/color/green.css') }}" type='text/css' media='all'/>
             <link rel="stylesheet" href="{{ asset('dist/css/zerogrid.css') }}" type="text/css" media="screen">
             <link rel="stylesheet" href="{{ asset('dist/css/responsive.css') }}" type="text/css" media="screen">
+            <link rel='stylesheet' id='reset-css' href="{{ asset('dist/css/popups/login.css') }}" type='text/css' media='all'/>
 
         {% endblock %}
 
@@ -33,10 +35,9 @@
 
             {% block footer %}
                 {% include 'AppBundle::footer.html.twig' %}
-            {% endblock %}
+            {% endblock footer %}
 
         {% endblock %}
-
 
         {% block javascripts %}
 
@@ -48,6 +49,8 @@
             <script type='text/javascript' src="{{ asset('dist/js/superfish.js') }}"></script>
             <script type='text/javascript' src="{{ asset('dist/js/orbit.min.js') }}"></script>
             <script src="{{ asset('dist/js/css3-mediaqueries.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/popups/login.js') }}"></script>
+            <script type='text/javascript' src="{{ asset('dist/js/popups/register.js') }}"></script>
 
             <script type="text/javascript" language="javascript">
                 $(function() {
@@ -56,7 +59,7 @@
                     $('#featured-posts').carouFredSel({
                         auto: true,
                         prev: '#prev2',
-                        next: '#next2',
+                        next: '#next2'
                     });
                     /* End Carousel */
 
@@ -84,6 +87,14 @@
             </script>
 
         {% endblock %}
+
+        {% block popup %}
+            {{ render(controller('AppBundle:Security/Login:login')) }}
+            {{ render(controller('AppBundle:Security/Registration:register')) }}
+
+            {#{% include 'AppBundle::popups/register.html.twig' %}#}
+        {% endblock popup %}
+
     </body>
 
 </html>

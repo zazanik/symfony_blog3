@@ -1,0 +1,48 @@
+.hidden{
+    display: none;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.authorization-popup{
+    padding: 20px 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.authorization-popup input.text-input{
+    display: block;
+    margin: 10px 0;
+    padding: 0 0 0 15px;
+    width: calc(100% - 15px);
+    height: 30px;
+    outline: none;
+    border: 1px solid #eee;
+}
+
+/*.authorization-popup input[type='checkbox']{*/
+    /*di*/
+/*}*/
+
+.authorization-popup button{
+    display: block;
+    margin: 10px 0 0 0;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+}

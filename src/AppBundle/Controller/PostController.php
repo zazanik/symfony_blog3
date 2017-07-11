@@ -2,21 +2,26 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 
 class PostController extends Controller
 {
     /**
      *
-     * @Route("/{page}", defaults={"page" = 1}, name="post_list")
+     * @Route("/{page}", defaults={"page" = 1}, name="post_list", requirements={"page": "\d+"})
      * @Template()
-
-     * @param Request $request
+     *
+     * @param $request Request
+     * @param $page integer
+     *
      * @return array
      */
     public function listAction(Request $request, $page)
@@ -66,10 +71,11 @@ class PostController extends Controller
      * @Route("/post/{id}", name="post_show")
      * @Template()
      *
+     * @param $request Request
      * @param $post Post
      * @return array
      */
-    public function showAction(Post $post)
+    public function showAction(Request $request, Post $post)
     {
 
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
@@ -79,7 +85,6 @@ class PostController extends Controller
         $categoryList = $post->getCategory()->getValues();
 
         $categoryPosts = $this->get('app.PostHelper')->getCategoryPosts($categoryList, 3);
-
 
         return array(
             'post'               => $post,
