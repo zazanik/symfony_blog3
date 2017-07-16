@@ -28,6 +28,8 @@ class PostController extends Controller
     {
         $posts = $this->get('app.PostHelper')->getLastPosts(10);
 
+        dump($posts);
+
         $lastPosts = $this->get('app.PostHelper')->getLastPosts(5);
 
         $paginationPosts = $this->get('app.PostHelper')->getPaginatePosts($page)->paginationPosts;
@@ -82,7 +84,7 @@ class PostController extends Controller
 
         $categories = $this->get('app.CategoryHelper')->getLastCategories(5);
 
-        $categoryList = $post->getCategory()->getValues();
+        $categoryList = $post->getCategory();
 
         $categoryPosts = $this->get('app.PostHelper')->getCategoryPosts($categoryList, 3);
 
